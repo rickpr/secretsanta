@@ -1,4 +1,4 @@
-<%= form_for(@rule) do |f| %>
+<%= form_for([@group, Rule.new]) do |f| %>
   <% if @rule.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
@@ -18,10 +18,6 @@
   <div class="field">
     <%= f.label :recipient %><br>
     <%= f.text_field :recipient %>
-  </div>
-  <div class="field">
-    <%= f.label :group_id %><br>
-    <%= f.text_field :group_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

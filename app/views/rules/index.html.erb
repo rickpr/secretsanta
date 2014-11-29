@@ -15,10 +15,10 @@
       <tr>
         <td><%= rule.gifter %></td>
         <td><%= rule.recipient %></td>
-        <td><%= rule.group %></td>
-        <td><%= link_to 'Show', rule %></td>
-        <td><%= link_to 'Edit', edit_rule_path(rule) %></td>
-        <td><%= link_to 'Destroy', rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= rule.group.name %></td>
+        <td><%= link_to 'Show', [@group, rule] %></td>
+        <td><%= link_to 'Edit', edit_group_rule_path(@group, rule) %></td>
+        <td><%= link_to 'Destroy', [@group, rule], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Rule', new_rule_path %>
+<%= link_to 'New Rule', new_group_rule_path %>

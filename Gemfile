@@ -47,3 +47,6 @@ gem 'puma'
 
 # Devise authentication
 gem 'devise'
+
+# Valid email without any wacked out regex
+gem 'valid_email'

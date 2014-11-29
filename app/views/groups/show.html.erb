@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @group.user %>
+  <strong>Owner:</strong>
+  <%= @group.user.username %>
 </p>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |

@@ -1,11 +1,13 @@
 class RulesController < ApplicationController
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:index, :new, :create]
+
 
   respond_to :html
 
   def index
-    @rules = Rule.all
-    respond_with(@rules)
+    @rules = @group.rules
+    respond_with([@group, @rules])
   end
 
   def show
@@ -21,14 +23,14 @@ class RulesController < ApplicationController
   end
 
   def create
-    @rule = Rule.new(rule_params)
+    @rule = @group.rules.new(rule_params)
     @rule.save
-    respond_with(@rule)
+    respond_with([@group, @rule])
   end
 
   def update
     @rule.update(rule_params)
-    respond_with(@rule)
+    respond_with([@group, @rule])
   end
 
   def destroy
@@ -38,7 +40,12 @@ class RulesController < ApplicationController
 
   private
     def set_rule
-      @rule = Rule.find(params[:id])
+      set_group
+      @rule = @group.rules.find(params[:id])
+    end
+
+    def set_group
+      @group = Group.find(params[:group_id])
     end
 
     def rule_params

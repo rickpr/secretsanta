@@ -1,11 +1,12 @@
 class SantaController < ApplicationController
   before_action :set_santum, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:index, :new, :create]
 
   respond_to :html
 
   def index
-    @santa = Santum.all
-    respond_with(@santa)
+    @santa=@group.santa
+    respond_with([@group, @santa])
   end
 
   def show
@@ -21,14 +22,14 @@ class SantaController < ApplicationController
   end
 
   def create
-    @santum = Santum.new(santum_params)
+    @santum = @group.santa.new(santum_params)
     @santum.save
-    respond_with(@santum)
+    respond_with([@group, @santum])
   end
 
   def update
     @santum.update(santum_params)
-    respond_with(@santum)
+    respond_with([@group, @santum])
   end
 
   def destroy
@@ -38,7 +39,12 @@ class SantaController < ApplicationController
 
   private
     def set_santum
-      @santum = Santum.find(params[:id])
+      set_group
+      @santum = @group.santa.find(params[:id])
+    end
+
+    def set_group
+      @group = Group.find(params[:group_id])
     end
 
     def santum_params

@@ -12,8 +12,8 @@
 
 <p>
   <strong>Group:</strong>
-  <%= @rule.group %>
+  <%= @rule.group.name %>
 </p>
 
-<%= link_to 'Edit', edit_rule_path(@rule) %> |
-<%= link_to 'Back', rules_path %>
+<%= link_to 'Edit', edit_group_rule_path %> |
+<%= link_to 'Back', group_rules_path %>
