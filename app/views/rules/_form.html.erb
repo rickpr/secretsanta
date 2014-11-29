@@ -1,0 +1,29 @@
+<%= form_for(@rule) do |f| %>
+  <% if @rule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
+
+      <ul>
+      <% @rule.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :gifter %><br>
+    <%= f.text_field :gifter %>
+  </div>
+  <div class="field">
+    <%= f.label :recipient %><br>
+    <%= f.text_field :recipient %>
+  </div>
+  <div class="field">
+    <%= f.label :santa_id %><br>
+    <%= f.text_field :santa_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

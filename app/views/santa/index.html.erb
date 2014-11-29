@@ -1,0 +1,29 @@
+<h1>Listing santa</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Group</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @santa.each do |santum| %>
+      <tr>
+        <td><%= santum.name %></td>
+        <td><%= santum.email %></td>
+        <td><%= santum.group %></td>
+        <td><%= link_to 'Show', santum %></td>
+        <td><%= link_to 'Edit', edit_santum_path(santum) %></td>
+        <td><%= link_to 'Destroy', santum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Santum', new_santum_path %>
