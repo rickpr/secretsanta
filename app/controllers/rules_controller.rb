@@ -42,6 +42,6 @@ class RulesController < ApplicationController
     end
 
     def rule_params
-      params.require(:rule).permit(:gifter, :recipient, :santa_id)
+      params.require(:rule).permit(:gifter, :recipient, :group_id)
     end
 end

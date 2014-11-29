@@ -1,2 +1,33 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="text-success" style="background-color: #000000;">
+  <h1>This is Home#index</h1>
+  Here's all your debugging info, commander:
+
+  <h2>current_user.id</h2>
+  <%= current_user.id %>
+
+  <h2>User.all</h2>
+  <%= User.all.length %> Users
+  <%= User.all %>
+
+  <h2>Group.all</h2>
+  <%= Group.all.length %> Groups
+  <%= Group.all %>
+
+  <h2>Santum.all</h2>
+  <%= Santum.all.length %> Santa
+  <%= Santum.all %>
+
+  <h2>Rule.all</h2>
+  <%= Rule.all.length %> Rules
+  <%= Rule.all %>
+  
+  <h2>session.inspect</h2>
+  <%= session.inspect %>
+  
+  <h2>Routes</h2>
+  <% routes=Rails.application.routes.routes %>
+  <h3><%= routes.length %> routes</h3>
+  <% routes.each do |route| %>
+    <%= link_to route.path.spec.to_s, route.path.spec.to_s, class: 'text-success'%><br>
+  <% end %>
+</div>

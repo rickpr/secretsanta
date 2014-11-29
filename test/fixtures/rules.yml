@@ -3,9 +3,9 @@
 one:
   gifter: MyString
   recipient: MyString
-  santa_id: 
+  group_id: 
 
 two:
   gifter: MyString
   recipient: MyString
-  santa_id: 
+  group_id: 

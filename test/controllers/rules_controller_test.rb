@@ -18,7 +18,7 @@ class RulesControllerTest < ActionController::TestCase
 
   test "should create rule" do
     assert_difference('Rule.count') do
-      post :create, rule: { gifter: @rule.gifter, recipient: @rule.recipient, santa_id: @rule.santa_id }
+      post :create, rule: { gifter: @rule.gifter, group_id: @rule.group_id, recipient: @rule.recipient }
     end
 
     assert_redirected_to rule_path(assigns(:rule))
@@ -35,7 +35,7 @@ class RulesControllerTest < ActionController::TestCase
   end
 
   test "should update rule" do
-    patch :update, id: @rule, rule: { gifter: @rule.gifter, recipient: @rule.recipient, santa_id: @rule.santa_id }
+    patch :update, id: @rule, rule: { gifter: @rule.gifter, group_id: @rule.group_id, recipient: @rule.recipient }
     assert_redirected_to rule_path(assigns(:rule))
   end
 

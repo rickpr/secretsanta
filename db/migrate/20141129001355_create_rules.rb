@@ -3,7 +3,7 @@ class CreateRules < ActiveRecord::Migration
     create_table :rules do |t|
       t.string :gifter
       t.string :recipient
-      t.references :santa, index: true
+      t.references :group, index: true
 
       t.timestamps
     end

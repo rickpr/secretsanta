@@ -1,3 +1,3 @@
 class Rule < ActiveRecord::Base
-  belongs_to :santa
+  belongs_to :group
 end

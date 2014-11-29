@@ -21,7 +21,8 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
+    @user = current_user
+    @group = @user.groups.new(group_params)
     @group.save
     respond_with(@group)
   end
