@@ -42,37 +42,31 @@ class GroupsController < ApplicationController
     gifters=@group.santa.map(&:id)
     recipients=@group.santa.map(&:id)
     @results=Hash.new
-    flag=false
-    until flag
+    until gifters.empty?
       dimensions=gifters.length
-      if dimensions > 1
-        gift_matrix=Matrix.build(dimensions, dimensions) do |row,col|
-          if gifters[row]==recipients[col]
-            0
-          elsif (@group.rules.where gifter: @group.santa.find(gifters[row]).name, recipient: @group.santa.find(recipients[col]).name).any?
-            0
-          else
-            1
-          end
+      gift_matrix=Matrix.build(dimensions, dimensions) do |row,col|
+        if gifters[row]==recipients[col]
+          0
+        elsif (@group.rules.where gifter: @group.santa.find(gifters[row]).name, recipient: @group.santa.find(recipients[col]).name).any?
+          0
+        else
+          1
         end
-        row_options=Array.new
-        for i in 0..gift_matrix.row_count-1 do
-          row_options << [gift_matrix.row(i).inject(:+),i]
-        end
-        row_options=row_options.shuffle.sort_by(&:first)
-        current_gifter=row_options.first.last
-        ones=Array.new
-        gift_matrix.row(current_gifter).each_with_index do |recipient,index|
-          ones << index if recipient==1
-        end
-        current_recipient=ones[rand(0..ones.length-1)]
-        @results[gifters[current_gifter]]=recipients[current_recipient]
-        gifters.slice!(current_gifter)
-        recipients.slice!(current_recipient)
-      else
-        @results[gifters.first]=recipients.first
-        flag=true
       end
+      row_options=Array.new
+      for i in 0..gift_matrix.row_count-1 do
+        row_options << [gift_matrix.row(i).inject(:+),i]
+      end
+      row_options=row_options.shuffle.sort_by(&:first)
+      current_gifter=row_options.first.last
+      ones=Array.new
+      gift_matrix.row(current_gifter).each_with_index do |recipient,index|
+        ones << index if recipient==1
+      end
+      current_recipient=ones[rand(0..ones.length-1)]
+      @results[gifters[current_gifter]]=recipients[current_recipient]
+      gifters.slice!(current_gifter)
+      recipients.slice!(current_recipient)
     end
   end
   private
