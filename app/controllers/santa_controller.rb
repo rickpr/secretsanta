@@ -2,7 +2,7 @@ class SantaController < ApplicationController
   before_action :set_santum, only: [:show, :edit, :update, :destroy]
   before_action :set_group, only: [:index, :new, :create]
 
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @santa=@group.santa
@@ -34,6 +34,7 @@ class SantaController < ApplicationController
 
   def destroy
     @santum.destroy
+    @group.rules.destroy_all
     respond_with([@group, @santum])
   end
 

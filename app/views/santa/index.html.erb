@@ -18,7 +18,7 @@
         <td><%= santum.group.name %></td>
         <td><%= link_to 'Show', [@group, santum] %></td>
         <td><%= link_to 'Edit', edit_group_santum_path(@group, santum) %></td>
-        <td><%= link_to 'Destroy', [@group, santum], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', [@group, santum], method: :delete, data: { confirm: 'If you delete a Santa, all rules within the group will also be deleted!' } %></td>
       </tr>
     <% end %>
   </tbody>

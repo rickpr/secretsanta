@@ -1,5 +1,5 @@
 class Santum < ActiveRecord::Base
   belongs_to :group
-  validates_presence_of :name, length: { maximum: 100}
-  validates :email, presence: true, email: true
+  validates :name, presence: true, length: { maximum: 100}, uniqueness: {scope: :group, case_sensitive: false}
+  validates :email, presence: true, email: true, uniqueness: {scope: :group, case_sensitive: false}
 end
