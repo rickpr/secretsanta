@@ -35,7 +35,7 @@ class RulesController < ApplicationController
 
   def destroy
     @rule.destroy
-    respond_with(@rule)
+    respond_with([@group, @rule])
   end
 
   private

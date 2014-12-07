@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :gifter %><br>
-    <%= f.text_field :gifter %>
+    <%= f.select :gifter, options_for_select(@group.santa.map(&:name)) %>
   </div>
   <div class="field">
     <%= f.label :recipient %><br>
-    <%= f.text_field :recipient %>
+    <%= f.select :recipient, options_for_select(@group.santa.map(&:name)) %>
   </div>
   <div class="actions">
     <%= f.submit %>

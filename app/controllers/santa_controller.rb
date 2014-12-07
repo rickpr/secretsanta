@@ -34,7 +34,7 @@ class SantaController < ApplicationController
 
   def destroy
     @santum.destroy
-    respond_with(@santum)
+    respond_with([@group, @santum])
   end
 
   private

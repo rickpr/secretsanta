@@ -64,7 +64,6 @@ GEM
     libv8 (3.16.14.7)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    matrix (0.0.1)
     mime-types (2.4.3)
     minitest (5.4.3)
     multi_json (1.10.1)
@@ -148,7 +147,6 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   less-rails
-  matrix
   puma
   rails
   sass-rails

@@ -50,6 +50,3 @@ gem 'devise'
 
 # Valid email without any wacked out regex
 gem 'valid_email'
-
-# To help solve the secret santa problem
-gem 'matrix'
