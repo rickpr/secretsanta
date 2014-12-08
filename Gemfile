@@ -41,6 +41,7 @@ gem 'spring',        group: :development
 # Bootstrap views
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+gem 'bootstrap_form'
 
 # Puma Server
 gem 'puma'

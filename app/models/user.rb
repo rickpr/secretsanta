@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :groups
+  has_many :groups, dependent: :destroy
   attr_accessor :login
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

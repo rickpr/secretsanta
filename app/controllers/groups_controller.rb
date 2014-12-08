@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   respond_to :html
 
   def index
-    @groups = Group.all
+    @groups = current_user.groups.all
     respond_with(@groups)
   end
 
@@ -39,12 +39,12 @@ class GroupsController < ApplicationController
 
   def christmas
     require 'matrix'
-    gifters=@group.santa.map(&:id)
-    recipients=@group.santa.map(&:id)
+    gifters=@group.santa.map &:id
+    recipients=@group.santa.map &:id
     @results=Hash.new
     until gifters.empty?
       dimensions=gifters.length
-      gift_matrix=Matrix.build(dimensions, dimensions) do |row,col|
+      gift_matrix=Matrix.build dimensions, dimensions do |row,col|
         if gifters[row]==recipients[col]
           0
         elsif (@group.rules.where gifter: @group.santa.find(gifters[row]).name, recipient: @group.santa.find(recipients[col]).name).any?
@@ -57,21 +57,22 @@ class GroupsController < ApplicationController
       for i in 0..gift_matrix.row_count-1 do
         row_options << [gift_matrix.row(i).inject(:+),i]
       end
-      row_options=row_options.shuffle.sort_by(&:first)
+      row_options=row_options.shuffle.sort_by &:first
       current_gifter=row_options.first.last
       ones=Array.new
       gift_matrix.row(current_gifter).each_with_index do |recipient,index|
         ones << index if recipient==1
       end
-      current_recipient=ones[rand(0..ones.length-1)]
+      current_recipient=ones[rand 0..ones.length-1]
       @results[gifters[current_gifter]]=recipients[current_recipient]
-      gifters.slice!(current_gifter)
-      recipients.slice!(current_recipient)
+      gifters.slice! current_gifter
+      recipients.slice! current_recipient
     end
   end
   private
     def set_group
-      @group = Group.find(params[:id])
+      @group = Group.find params[:id]
+      redirect_to groups_path, flash: {error:  "That's not your group."} if @group.user.id != current_user.id
     end
 
     def group_params

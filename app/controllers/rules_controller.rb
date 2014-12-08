@@ -46,6 +46,7 @@ class RulesController < ApplicationController
 
     def set_group
       @group = Group.find(params[:group_id])
+      redirect_to groups_path, flash: {error:  "That's not your group."} if @group.user.id != current_user.id
     end
 
     def rule_params
