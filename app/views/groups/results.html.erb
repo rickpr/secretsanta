@@ -9,21 +9,18 @@
   <tbody id="results">
   </tbody>
 </table>
-
-<% if @group.results.any? %>
-  <script type="text/javascript">
-  <% @group.results.each do |result| %>
-    $('#results').append('<%= escape_javascript(render 'result', result: result) %>');
-  <% end %>
-  </script>
-<% else %>
+<div id="hat"><%= image_tag 'hat.gif' %></div>
 <script type="text/javascript">
-  $('#resultstable').hide();
-  $('#thehat').hide();
-  $.ajax('<%= christmas_group_path(@group) %>');
+  <% if @group.results.any? %>
+    <% @group.results.each do |result| %>
+      $('#results').append('<%= j render 'result', result: result %>');
+      $('#hat').hide();
+    <% end %>
+  <% else %>
+    $.ajax('<%= load_group_path %>');
+  <% end %>
 </script>
-<% end %>
-<%= form_tag christmas_group_path, remote: true, method: :get, id: 'thehat' do %>
+<%= form_tag load_group_path, remote: true, method: :get, id: 'shake' do %>
   <%= submit_tag "Shake the hat again!", class: 'btn btn-success' %>
 <% end %>
 

@@ -1,5 +1,5 @@
 <% unless @santum.errors.any? %>
-  var new_santum = $("<%= escape_javascript(render @santum) %>").hide();
+  var new_santum = $("<%= j render @santum %>").hide();
   $('#santa').append(new_santum);
   $('#santum_<%= @santum.id %>').fadeIn('slow');
 <% else %>

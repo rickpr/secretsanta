@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do 
       get 'christmas'
       get 'results'
+      get 'load'
     end
     resources :rules
     resources :santa

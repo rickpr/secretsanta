@@ -1,5 +1,5 @@
 <% unless @rule.errors.any? %>
-  var new_rule = $("<%= escape_javascript(render @rule) %>").hide();
+  var new_rule = $("<%= j render @rule %>").hide();
   $('#rules').append(new_rule);
   $('#rule_<%= @rule.id %>').fadeIn('slow');
 <% else %>

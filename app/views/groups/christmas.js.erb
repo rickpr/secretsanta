@@ -1,8 +1,9 @@
 $('#resultstable').show();
+$('#hat').hide();
 $('#results').empty();
 <% @results.each do |result| %>
-  var new_result = $('<%= escape_javascript(render 'result', result: result) %>').hide();
+  var new_result = $('<%= j render 'result', result: result %>').hide();
   $('#results').append(new_result);
   $('#result_<%= result.id %>').fadeIn('slow');
 <% end %>
-$('#thehat').show();
+$('#shake').show();

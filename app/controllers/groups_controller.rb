@@ -79,6 +79,9 @@ class GroupsController < ApplicationController
   def results
   end
 
+  def load
+  end
+
   private
     def set_group
       @group = Group.find params[:id]
