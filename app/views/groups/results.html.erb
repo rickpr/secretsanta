@@ -1,0 +1,29 @@
+<table class="table table-striped" id="resultstable">
+  <thead>
+    <tr>
+      <th>Gifter</th>
+      <th>Recipient</th>
+    </tr>
+  </thead>
+
+  <tbody id="results">
+  </tbody>
+</table>
+
+<% if @group.results.any? %>
+  <script type="text/javascript">
+  <% @group.results.each do |result| %>
+    $('#results').append('<%= escape_javascript(render 'result', result: result) %>');
+  <% end %>
+  </script>
+<% else %>
+<script type="text/javascript">
+  $('#resultstable').hide();
+  $('#thehat').hide();
+  $.ajax('<%= christmas_group_path(@group) %>');
+</script>
+<% end %>
+<%= form_tag christmas_group_path, remote: true, method: :get, id: 'thehat' do %>
+  <%= submit_tag "Shake the hat again!", class: 'btn btn-success' %>
+<% end %>
+

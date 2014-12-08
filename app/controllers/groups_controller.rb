@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :christmas]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :christmas, :results]
 
   respond_to :html, :js
 
@@ -39,16 +39,17 @@ class GroupsController < ApplicationController
   end
 
   def christmas
+    @group.results.destroy_all
     require 'matrix'
-    gifters=@group.santa.map &:id
-    recipients=@group.santa.map &:id
-    @results=Hash.new
+    gifters=@group.santa.map &:name
+    recipients=@group.santa.map &:name
+    results=Hash.new
     until gifters.empty?
       dimensions=gifters.length
       gift_matrix=Matrix.build dimensions, dimensions do |row,col|
         if gifters[row]==recipients[col]
           0
-        elsif (@group.rules.where gifter: @group.santa.find(gifters[row]).name, recipient: @group.santa.find(recipients[col]).name).any?
+        elsif (@group.rules.where gifter: @group.santa.find_by_name(gifters[row]).name, recipient: @group.santa.find_by_name(recipients[col]).name).any?
           0
         else
           1
@@ -65,11 +66,19 @@ class GroupsController < ApplicationController
         ones << index if recipient==1
       end
       current_recipient=ones[rand 0..ones.length-1]
-      @results[gifters[current_gifter]]=recipients[current_recipient]
+      results[gifters[current_gifter]]=recipients[current_recipient]
       gifters.slice! current_gifter
       recipients.slice! current_recipient
     end
+    results.each do |gifter,recipient|
+      @group.results.create(gifter: gifter, recipient: recipient)
+      @results=@group.results
+    end
   end
+
+  def results
+  end
+
   private
     def set_group
       @group = Group.find params[:id]

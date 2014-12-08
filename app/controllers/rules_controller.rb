@@ -26,6 +26,7 @@ class RulesController < ApplicationController
   def create
     @rule = @group.rules.new(rule_params)
     @rule.save
+    @group.results.destroy_all
     respond_with([@group, @rule])
   end
 

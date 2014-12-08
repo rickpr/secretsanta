@@ -1,4 +1,4 @@
-<% if !@group.errors.any? %>
+<% unless @group.errors.any? %>
   var new_group = $("<%= escape_javascript(render @group) %>").hide();
   $('#groups').append(new_group);
   $('#group_<%= @group.id %>').fadeIn('slow');

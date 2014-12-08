@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :groups do
-    member { get 'christmas' }
+    member do 
+      get 'christmas'
+      get 'results'
+    end
     resources :rules
     resources :santa
   end

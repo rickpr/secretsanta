@@ -25,6 +25,7 @@ class SantaController < ApplicationController
   def create
     @santum = @group.santa.new(santum_params)
     @santum.save
+    @group.results.destroy_all
     respond_with([@group, @santum])
   end
 
@@ -36,6 +37,7 @@ class SantaController < ApplicationController
   def destroy
     @santum.destroy
     @group.rules.destroy_all
+    @group.results.destroy_all
     respond_with([@group, @santum])
   end
 
