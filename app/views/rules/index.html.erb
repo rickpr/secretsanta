@@ -1,29 +1,21 @@
 <h1>Listing rules</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Gifter</th>
+      <th></th>
       <th>Recipient</th>
-      <th>Group</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="rules">
     <% @rules.each do |rule| %>
-      <tr>
-        <td><%= rule.gifter %></td>
-        <td><%= rule.recipient %></td>
-        <td><%= rule.group.name %></td>
-        <td><%= link_to 'Show', [@group, rule] %></td>
-        <td><%= link_to 'Edit', edit_group_rule_path(@group, rule) %></td>
-        <td><%= link_to 'Destroy', [@group, rule], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= render 'rule', rule: rule %>
     <% end %>
   </tbody>
 </table>
-
+<%= render 'form' %>
 <br>
-
-<%= link_to 'New Rule', new_group_rule_path %>
+<%= link_to 'Done, give me the results >', christmas_group_path(@group), class: 'btn btn-danger' %>

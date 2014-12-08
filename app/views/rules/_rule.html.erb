@@ -1,6 +1,6 @@
-<%= div_for rule do %>
-<p>
-<%= h(rule.gifter) %><br>
-<%= h(rule.recipient) %><br>
-</p>
-<% end %>
+<tr id="rule_<%= rule.id %>">
+  <td><%= rule.gifter %></td>
+  <td>cannot give to</td>
+  <td><%= rule.recipient %></td>
+  <td><%= link_to '<i class="fa fa-trash-o"></i> Delete'.html_safe, [@group, rule], method: :delete, data: { confirm: 'Are you sure?' }, class: 'badge alert-danger' %></td>
+</tr>

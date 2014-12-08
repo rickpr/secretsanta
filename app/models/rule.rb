@@ -1,7 +1,7 @@
 class Rule < ActiveRecord::Base
   belongs_to :group
 
-  validates :recipient, uniqueness: { scope: :gifter, message: "That rule already exists." }
+  validates :gifter, uniqueness: { scope: :recipient, message: "already has this rule!" }
   validate :valid_rule?
   private
 

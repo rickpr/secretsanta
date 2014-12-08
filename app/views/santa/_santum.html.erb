@@ -1,5 +1,6 @@
-<%= div_for santum do %>
-<p>
-<%= h(santum.name) %>
-</p>
-<% end %>
+<tr id="santum_<%= santum.id %>">
+  <td><%= santum.name %></td>
+  <td><%= santum.email %></td>
+  <td><%= link_to 'Edit', edit_group_santum_path(@group,santum), class: 'badge alert-warning' %></td>
+  <td><%= link_to '<i class="fa fa-trash-o"></i> Destroy'.html_safe, [@group, santum], method: :delete, data: { confirm: 'If you delete a Santa, all rules within the group will also be deleted!' }, class: 'badge alert-danger' %></td>
+</tr>

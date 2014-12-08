@@ -1,0 +1,6 @@
+<tr id="group_<%= group.id %>">
+  <td><%= group.name %></td>
+  <td><%= link_to 'Add Santas and Rules', group_santa_path(group), class: 'badge alert-success' %></td>
+  <td><%= link_to 'Change Name', edit_group_path(group), class: 'badge alert-warning' %></td>
+  <td><%= link_to '<i class="fa fa-trash-o"></i> Delete'.html_safe, group, method: :delete, data: { confirm: 'Are you sure?' }, class: 'badge alert-danger' %></td>
+</tr>

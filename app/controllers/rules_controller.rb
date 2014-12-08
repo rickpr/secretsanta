@@ -3,10 +3,11 @@ class RulesController < ApplicationController
   before_action :set_group, only: [:index, :new, :create]
 
 
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @rules = @group.rules
+    @rule=Rule.new
     respond_with([@group, @rules])
   end
 

@@ -1,29 +1,20 @@
-<h1>Listing santa</h1>
+<h1>Santas for <%= @group.name %></h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th>Group</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id='santa'>
     <% @santa.each do |santum| %>
-      <tr>
-        <td><%= santum.name %></td>
-        <td><%= santum.email %></td>
-        <td><%= santum.group.name %></td>
-        <td><%= link_to 'Show', [@group, santum] %></td>
-        <td><%= link_to 'Edit', edit_group_santum_path(@group, santum) %></td>
-        <td><%= link_to 'Destroy', [@group, santum], method: :delete, data: { confirm: 'If you delete a Santa, all rules within the group will also be deleted!' } %></td>
-      </tr>
+    <%= render 'santum', santum: santum %>
     <% end %>
   </tbody>
 </table>
-
+<%= render 'form' %>
 <br>
-
-<%= link_to 'New Santum', new_group_santum_path %>
+<%= link_to 'Done adding Santas, now add rules >', group_rules_path, class: 'btn btn-danger' %>

@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Group Name:</strong>
   <%= @group.name %>
 </p>
 
 <p>
-  <strong>Owner:</strong>
+  <strong>Group Coordinator:</strong>
   <%= @group.user.username %>
 </p>
 
@@ -16,6 +16,5 @@
 </div>
 
 <%= render 'santa/form' %>
-
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<br>
+<%= link_to 'Done', groups_path, class: 'btn btn-primary' %>

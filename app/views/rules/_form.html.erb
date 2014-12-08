@@ -1,25 +1,6 @@
-<%= form_for([@group, Rule.new]) do |f| %>
-  <% if @rule.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
-
-      <ul>
-      <% @rule.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :gifter %><br>
-    <%= f.select :gifter, options_for_select(@group.santa.map(&:name)) %>
-  </div>
-  <div class="field">
-    <%= f.label :recipient %><br>
-    <%= f.select :recipient, options_for_select(@group.santa.map(&:name)) %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= bootstrap_form_for [@group, @rule], remote: true, layout: :inline do |f| %>
+  <%= f.select :gifter, options_for_select(@group.santa.map &:name), hide_label: true %>
+  <strong>cannot give to</strong>
+  <%= f.select :recipient, options_for_select(@group.santa.map &:name), hide_label: true %>
+  <%= f.submit class: 'btn btn-success' %>
 <% end %>

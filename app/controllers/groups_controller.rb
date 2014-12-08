@@ -1,10 +1,11 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy, :christmas]
 
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @groups = current_user.groups.all
+    @group = Group.new
     respond_with(@groups)
   end
 

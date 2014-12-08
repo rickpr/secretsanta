@@ -6,6 +6,7 @@ class SantaController < ApplicationController
 
   def index
     @santa=@group.santa
+    @santum=Santum.new
     respond_with([@group, @santa])
   end
 

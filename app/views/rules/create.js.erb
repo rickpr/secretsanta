@@ -1,0 +1,9 @@
+<% if !@rule.errors.any? %>
+  var new_rule = $("<%= escape_javascript(render @rule) %>").hide();
+  $('#rules').append(new_rule);
+  $('#rule_<%= @rule.id %>').fadeIn('slow');
+<% else %>
+  <% @rule.errors.full_messages.each do |message| %>
+    $.growl.error({ message: "<%= message %>" });
+  <% end %>
+<% end %>

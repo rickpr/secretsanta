@@ -1,5 +1,9 @@
-<%= bootstrap_form_for [@group, Santum.new], remote: true do |f| %>
-    <%= f.text_field :name %>
-    <%= f.text_field :email %>
-    <%= f.submit class: 'btn btn-success' %>
-<% end %>
+<div class="row">
+  <div class="col-xs-4">
+    <%= bootstrap_form_for [@group, @santum], remote: true do |f| %>
+      <%= f.text_field :name %>
+      <%= f.text_field :email, label: "E-Mail" %>
+      <%= f.submit class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

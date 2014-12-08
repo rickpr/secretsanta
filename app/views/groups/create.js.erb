@@ -1,0 +1,10 @@
+<% if !@group.errors.any? %>
+  var new_group = $("<%= escape_javascript(render @group) %>").hide();
+  $('#groups').append(new_group);
+  $('#group_<%= @group.id %>').fadeIn('slow');
+<% else %>
+  <% @group.errors.full_messages.each do |message| %>
+    $.growl.error({ message: "<%= message %>" });
+  <% end %>
+<% end %>
+$('#new_group')[0].reset();
