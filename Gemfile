@@ -51,3 +51,6 @@ gem 'devise'
 
 # Valid email without any wacked out regex
 gem 'valid_email'
+
+# To send the e-mails
+gem 'mandrill-api'

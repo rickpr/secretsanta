@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :christmas, :results]
+  before_action :set_group, except: [:index]
 
   respond_to :html, :js
 
@@ -7,15 +7,6 @@ class GroupsController < ApplicationController
     @groups = current_user.groups.all
     @group = Group.new
     respond_with(@groups)
-  end
-
-  def show
-    respond_with(@group)
-  end
-
-  def new
-    @group = Group.new
-    respond_with(@group)
   end
 
   def edit
@@ -76,12 +67,22 @@ class GroupsController < ApplicationController
     end
   end
 
+  def mailit
+    @group.results.each do |result|
+      gifter=@group.santa.find_by_name(result.gifter).email
+      recipient=result.recipient
+      Reindeer.pick(gifter: gifter, recipient: recipient).deliver
+    end
+  end
+  # These methods are AJAX placeholders
   def results
   end
 
   def load
   end
 
+  def mailload
+  end
   private
     def set_group
       @group = Group.find params[:id]

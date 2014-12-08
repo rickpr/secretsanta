@@ -1,35 +1,9 @@
-<div class="text-success" style="background-color: #000000; font-family: Courier New;">
-<pre>
-  <h1>This is Home#index</h1>
-  Here's all your debugging info!
-
-  <h2>current_user.id</h2>
-  <%= current_user.id %>
-
-  <h2>User.all</h2>
-  <%= User.all.length %> Users
-  <%= User.all %>
-
-  <h2>Group.all</h2>
-  <%= Group.all.length %> Groups
-  <%= Group.all %>
-
-  <h2>Santum.all</h2>
-  <%= Santum.all.length %> Santa
-  <%= Santum.all %>
-
-  <h2>Rule.all</h2>
-  <%= Rule.all.length %> Rules
-  <%= Rule.all %>
-  
-  <h2>session.inspect</h2>
-  <%= session.inspect %>
-  
-  <h2>Routes</h2>
-  <% routes=Rails.application.routes.routes %>
-  <h3><%= routes.length %> routes</h3>
-  <% routes.each do |route| %>
-    <%= link_to route.path.spec.to_s, route.path.spec.to_s, class: 'text-success'%><br>
-  <% end %>
-</pre>
-</div>
+<h1>Welcome to Secret Santa</h1>
+Here's how to get started:
+<ul class="list-group">
+  <li class="list-group-item list-group-item-success">1. Create Secret Santa groups</li>
+  <li class="list-group-item list-group-item-danger">2. Add people to your group</li>
+  <li class="list-group-item list-group-item-success">3. Create rules for your group</li>
+  <li class="list-group-item list-group-item-danger">4. View your results!</li>
+</ul>
+<%= link_to 'Click here to start!', groups_path, class: 'btn btn-block btn-danger btn-lg' %>

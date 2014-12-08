@@ -11,18 +11,6 @@ class RulesController < ApplicationController
     respond_with([@group, @rules])
   end
 
-  def show
-    respond_with(@rule)
-  end
-
-  def new
-    @rule = Rule.new
-    respond_with(@rule)
-  end
-
-  def edit
-  end
-
   def create
     @rule = @group.rules.new(rule_params)
     @rule.save

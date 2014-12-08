@@ -10,15 +10,6 @@ class SantaController < ApplicationController
     respond_with([@group, @santa])
   end
 
-  def show
-    respond_with(@santum)
-  end
-
-  def new
-    @santum = Santum.new
-    respond_with(@santum)
-  end
-
   def edit
   end
 

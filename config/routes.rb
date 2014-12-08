@@ -2,17 +2,22 @@ Rails.application.routes.draw do
 
 
   devise_for :users
-  resources :groups do
+  resources :groups, except: [:show, :new] do
     member do 
+      #Calculates the results
       get 'christmas'
+      #Mails the results
+      get 'mailit'
+      #AJAX placeholders
       get 'results'
       get 'load'
+      get 'mailload'
     end
-    resources :rules
-    resources :santa
+    resources :rules, except: [:show, :new, :edit]
+    resources :santa, except: [:show, :new]
   end
 
-  root 'groups#index'
+  root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
