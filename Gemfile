@@ -54,3 +54,6 @@ gem 'valid_email'
 
 # To send the e-mails
 gem 'mandrill-api'
+
+# For PGSQL
+gem 'pg'
