@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, except: [:index]
+  before_action :set_group, except: [:index, :create]
 
   respond_to :html, :js
 
