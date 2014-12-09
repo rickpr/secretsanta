@@ -73,6 +73,7 @@ GEM
     minitest (5.4.3)
     multi_json (1.10.1)
     orm_adapter (0.5.0)
+    pg (0.17.1)
     puma (2.10.2)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
@@ -154,6 +155,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   mandrill-api
+  pg
   puma
   rails
   sass-rails
