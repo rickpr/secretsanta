@@ -23,7 +23,7 @@ test:
 production:
   adapter: postgresql
   host: 172.17.42.1
-  port: 49190
+  port: 49153
   user: 'root'
   password: '13J2Xrhvaly0ipJf'
-  database: 'santadb'
+  database: 'db'
