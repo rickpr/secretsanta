@@ -14,7 +14,7 @@ class Rule < ActiveRecord::Base
     flag = false
     if gifter == recipient
       flag=true
-      errors.add(:gifter "cannot self-gift")
+      errors.add(:gifter, "cannot self-gift")
       gift_matrix=[1]
     end
     until gifters.empty? || flag
