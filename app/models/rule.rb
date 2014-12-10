@@ -12,6 +12,11 @@ class Rule < ActiveRecord::Base
     gifters=santas.map &:name
     recipients=santas.map &:name
     flag = false
+    if gifter == recipient
+      flag=true
+      errors.add(:gifter "cannot self-gift")
+      gift_matrix=[1]
+    end
     until gifters.empty? || flag
       dimensions=gifters.length
       gift_matrix=Matrix.build dimensions, dimensions do |row,col|
